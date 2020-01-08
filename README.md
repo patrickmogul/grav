@@ -2,7 +2,7 @@
 
 Grav CMS running on Nginx 1.16.1
 Custom PHP 7.4 build
-Fresh install of Grav CMS version 1.6.19 in site/ ready for customization
+Fresh install of Grav CMS version 1.6.19 installed and ready for customization
 
 Edit domain name in docker-compose.yaml
 Customize traefik settings/ports as needed
