@@ -1,6 +1,6 @@
 # grav
 
-Grav CMS 
+Grav CMS running on Nginx 1.16.1
 Custom PHP 7.4 build
 Fresh install of Grav CMS version 1.6.19 in site/ ready for customization
 
