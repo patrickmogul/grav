@@ -1,0 +1,37 @@
+version: '3'
+services:
+  grav:
+    image: nginx:1.16.1
+    restart: unless-stopped
+    networks:
+      - traefik_net
+    ports:
+      - 8080:80
+    volumes:
+      - ./site:/code
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.nginx.rule=Host(`example.com`)
+      - traefik.http.routers.nginx.entrypoints=web-secure
+      - traefik.http.routers.nginx.tls=true
+      - traefik.docker.network=traefik_net
+    depends_on:
+      - php
+
+  php:
+    build: .
+    container_name: php
+    restart: unless-stopped
+    networks:
+      - traefik_net
+    volumes:
+      - ./site:/code
+      - ./log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_net  
+
+networks:
+  traefik_net:
+    external: true
